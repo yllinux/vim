@@ -273,7 +273,7 @@ iab begin begin<Enter>end<Up><End>
 iab casem case ()<Enter>default: ;<Enter>endcase<Up><Up><End><Left>
 
 "仿真 task，输入 simtf + 回车/空格
-iabbr simtf <Enter>task simt(input [29:0] simt_multi, input [29:0] simt_delay);<Enter>forever begin<Enter>#(simt_multi * simt_delay);<Enter>$display("--------> simulation time:%d", $time);<Enter>end<Enter>endtask<Enter><Enter><Enter>task simf(input [29:0] simf_multi, input [29:0] simf_finish);<Enter>begin<Enter>#(simf_multi * simf_finish);<Enter>$display("--------> finish     time:%d",$time);<Enter>$finish;<Enter>end<Enter>endtask<Enter><Esc>8k<Home>i//--------------- simf ---------------<Esc>8k<Home>i//--------------- simt ---------------<Esc>16jA
+iabbr simtf <Enter>task simt(input [39:0] simt_multi, input [39:0] simt_delay);<Enter>forever begin<Enter>#(simt_multi * simt_delay);<Enter>$display("--------> simulation time:%d", $time);<Enter>end<Enter>endtask<Enter><Enter><Enter>task simf(input [39:0] simf_multi, input [39:0] simf_finish);<Enter>begin<Enter>#(simf_multi * simf_finish);<Enter>$display("--------> finish     time:%d",$time);<Enter>$finish;<Enter>end<Enter>endtask<Enter><Esc>8k<Home>i//--------------- simf ---------------<Esc>8k<Home>i//--------------- simt ---------------<Esc>16jA
 
 "仿真 task 模板，输入 taskm + 空格
 "iab task task ();<Enter>fork<Enter>join<Enter>endtask<Enter><Up><Up><Up><Up><End><left><left><Left>
