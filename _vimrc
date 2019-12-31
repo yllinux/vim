@@ -42,66 +42,66 @@ function MyDiff()
   endif
 endfunction
 
-"-------------------- ±àÂë -----------------------
+"-------------------- ç¼–ç  -----------------------
 set fileencodings=utf-8,gb2312,gb18030,gbk,ucs-bom,cp936,latin1
 set fileencoding=utf-8
 set termencoding=utf-8
 set encoding=utf-8
 
-"------------- ½â¾ö²Ëµ¥ÂÒÂë?-----------------------
-" ²Ëµ¥ÂÒÂë
+"------------- è§£å†³èœå•ä¹±ç ?-----------------------
+" èœå•ä¹±ç 
 source $VIMRUNTIME/delmenu.vim
 source $VIMRUNTIME/menu.vim
-" ÌáÊ¾ĞÅÏ¢ÂÒÂë
+" æç¤ºä¿¡æ¯ä¹±ç 
 language messages zh_CN.utf-8
 
-"-------------------- ±êÇ©Ò³ -----------------------
-"±êÇ©Ò³´°¿Ú ±£Áô+£¬Ìí¼Ó±êÇ©Ò³´°¿ÚÊıÁ¿£¬Ö»ÏÔÊ¾ÎÄ¼şÃû
+"-------------------- æ ‡ç­¾é¡µ -----------------------
+"æ ‡ç­¾é¡µçª—å£ ä¿ç•™+ï¼Œæ·»åŠ æ ‡ç­¾é¡µçª—å£æ•°é‡ï¼Œåªæ˜¾ç¤ºæ–‡ä»¶å
 function Deftablabel()
     let label = ''
     let bufnrlist = tabpagebuflist(v:lnum)
-    "»ñÈ¡ÍêÕûµÄ»º³åÇøÃû£¨¼´ÍêÕûÂ·¾¶ºÍÎÄ¼şÃû£©
+    "è·å–å®Œæ•´çš„ç¼“å†²åŒºåï¼ˆå³å®Œæ•´è·¯å¾„å’Œæ–‡ä»¶åï¼‰
     let full_path = bufname(bufnrlist[tabpagewinnr(v:lnum) - 1])
-    "»ñÈ¡ÎÄ¼şÃû
+    "è·å–æ–‡ä»¶å
     let filename  = fnamemodify(full_path, ':t')
-    "Èç¹û±êÇ©Ò³µÄÄÚÈİĞŞ¸Ä£¬ÔòÎª±êÇ©Ìí¼Ó¡°+¡±
+    "å¦‚æœæ ‡ç­¾é¡µçš„å†…å®¹ä¿®æ”¹ï¼Œåˆ™ä¸ºæ ‡ç­¾æ·»åŠ â€œ+â€
     for bufnr in bufnrlist
         if getbufvar(bufnr, "&modified")
             let label = '+'
             break
         endif
     endfor
-    "»ñÈ¡±êÇ©Ò³ÀïµÄ´°¿ÚÊıÁ¿
+    "è·å–æ ‡ç­¾é¡µé‡Œçš„çª—å£æ•°é‡
     let wincnt = tabpagewinnr(v:lnum, '$')
-    "Èç¹û±êÇ©Ò³ÀïµÄ´°¿ÚÊıÁ¿´óÓÚ1£¬ÔòÔÚlabel±äÁ¿ºóÏÔÊ¾Êı×Ö
+    "å¦‚æœæ ‡ç­¾é¡µé‡Œçš„çª—å£æ•°é‡å¤§äº1ï¼Œåˆ™åœ¨labelå˜é‡åæ˜¾ç¤ºæ•°å­—
     if wincnt > 1
         let label .= wincnt
     endif
-    "¿ÕÒ»¸ñ
+    "ç©ºä¸€æ ¼
     if label != ''
         let label .= ' '
     endif
-    "·µ»Ø label ºÍ filename Á½¸ö±äÁ¿Öµ
+    "è¿”å› label å’Œ filename ä¸¤ä¸ªå˜é‡å€¼
     return label . filename
 "   return label . fnamemodify(bufname(bufnrlist[tabpagewinnr(v:lnum) - 1]), ':t')
 endfunction
 set guitablabel=%{Deftablabel()}
 
-" %n »º³åÇøºÅ£» %r Ö»¶Á±êÖ¾Î»£» %m ĞŞ¸Ä±êÖ¾Î»£» %t »º³åÇøµÄÎÄ¼şµÄÎÄ¼şÃû£¨Î²²¿£©
+" %n ç¼“å†²åŒºå·ï¼› %r åªè¯»æ ‡å¿—ä½ï¼› %m ä¿®æ”¹æ ‡å¿—ä½ï¼› %t ç¼“å†²åŒºçš„æ–‡ä»¶çš„æ–‡ä»¶åï¼ˆå°¾éƒ¨ï¼‰
 "set guitablabel=%n%r%m%t
 
-"±êÇ©Ò³ÊıÁ¿
+"æ ‡ç­¾é¡µæ•°é‡
 set tabpagemax=50
 
-"-------------------- ×Ô¶¯²¹È« -----------------------
-"Ê¹ÓÃÓ³Éä
+"-------------------- è‡ªåŠ¨è¡¥å…¨ -----------------------
+"ä½¿ç”¨æ˜ å°„
 "inoremap   (   ()<ESC>i
 "inoremap   [   []<ESC>i
 "inoremap   {   {}<ESC>i
 "inoremap   "   ""<ESC>i
 "inoremap   '   ''<ESC>i
 
-"ÉèÖÃÌø³ö×Ô¶¯²¹È«µÄÀ¨ºÅ
+"è®¾ç½®è·³å‡ºè‡ªåŠ¨è¡¥å…¨çš„æ‹¬å·
 func SkipPair()  
     if getline('.')[col('.') - 1] == ')' || getline('.')[col('.') - 1] == ']' || getline('.')[col('.') - 1] == '"' || getline('.')[col('.') - 1] == "'" || getline('.')[col('.') - 1] == '}'  
         return "\<ESC>la"  
@@ -109,84 +109,88 @@ func SkipPair()
         return "\t"  
     endif  
 endfunc  
-" ½«tab¼ü°ó¶¨ÎªÌø³öÀ¨ºÅ  
+" å°†tabé”®ç»‘å®šä¸ºè·³å‡ºæ‹¬å·  
 inoremap <TAB> <c-r>=SkipPair()<CR>
 
 
-"-------------------- Ëõ½ø -----------------------
-"ÑØÓÃÉÏÒ»ĞĞµÄËõ½ø
+"-------------------- ç¼©è¿› -----------------------
+"æ²¿ç”¨ä¸Šä¸€è¡Œçš„ç¼©è¿›
 "set    autoindent
-"ÀàËÆ autoindent£¬µ«ÊÇ¿ÉÒÔÊ¶±ğÒ»Ğ© C Óï·¨ÒÔÄÜÔÚºÏÊÊµÄµØ·½Ôö¼Ó / ¼õÉÙËõ½ø
+"ç±»ä¼¼ autoindentï¼Œä½†æ˜¯å¯ä»¥è¯†åˆ«ä¸€äº› C è¯­æ³•ä»¥èƒ½åœ¨åˆé€‚çš„åœ°æ–¹å¢åŠ  / å‡å°‘ç¼©è¿›
 "set    smartindent
-"CÓï·¨Ëõ½ø
+"Cè¯­æ³•ç¼©è¿›
 set     cindent
 
-"-------------------- ÖÆ±í·û -----------------------
-"ÖÆ±í·û¿í¶È
+"-------------------- åˆ¶è¡¨ç¬¦ -----------------------
+"åˆ¶è¡¨ç¬¦å®½åº¦
 set tabstop=4
-"Ôö¼ÓËõ½ø
+"å¢åŠ ç¼©è¿›
 set shiftwidth=4
-"»ìºÏÊ¹ÓÃ¿Õ¸ñºÍÖÆ±í·û
+"æ··åˆä½¿ç”¨ç©ºæ ¼å’Œåˆ¶è¡¨ç¬¦
 set softtabstop=4
-"Ìæ»»ÖÆ±í·ûÎª¿Õ¸ñ
+"æ›¿æ¢åˆ¶è¡¨ç¬¦ä¸ºç©ºæ ¼
 set expandtab
 
-"-------------------- Óï·¨¸ßÁÁ -----------------------
-"¼¤»î£¬±£³ÖÄãµ±Ç°µÄÉ«²ÊÉèÖÃ
+"-------------------- è¯­æ³•é«˜äº® -----------------------
+"æ¿€æ´»ï¼Œä¿æŒä½ å½“å‰çš„è‰²å½©è®¾ç½®
 "syntax enable
-"¿ªÆôÓï·¨¸ßÁÁ£¬ ÓÃÈ±Ê¡Öµ¸²¸ÇÄã×Ô¼ºµÄ
+"å¼€å¯è¯­æ³•é«˜äº®ï¼Œ ç”¨ç¼ºçœå€¼è¦†ç›–ä½ è‡ªå·±çš„
 syntax on
-"Ö»ÔÚÖ§³Ö²ÊÉ«µÄÖÕ¶ËÖĞÉúĞ§
+"åªåœ¨æ”¯æŒå½©è‰²çš„ç»ˆç«¯ä¸­ç”Ÿæ•ˆ
 if &t_Co > 1
 syntax enable
 endif
 
-"ÎÄ¼şÀàĞÍ¼ì²â
+"æ–‡ä»¶ç±»å‹æ£€æµ‹
 filetype on
-"ÎªÌØ¶¨µÄÎÄ¼şÀàĞÍÔÊĞí²å¼şÎÄ¼şµÄÔØÈë£¬ÎªÌØ¶¨µÄÎÄ¼şÀàĞÍÔØÈëËõ½øÎÄ¼ş
+"ä¸ºç‰¹å®šçš„æ–‡ä»¶ç±»å‹å…è®¸æ’ä»¶æ–‡ä»¶çš„è½½å…¥ï¼Œä¸ºç‰¹å®šçš„æ–‡ä»¶ç±»å‹è½½å…¥ç¼©è¿›æ–‡ä»¶
 filetype plugin indent on
 
-"-------------------- ¼æÈİ -----------------------
-"²»¼æÈİVI£¬Ê¹ÓÃVIMµÄĞÂÌØĞÔ
+"-------------------- å…¼å®¹ -----------------------
+"ä¸å…¼å®¹VIï¼Œä½¿ç”¨VIMçš„æ–°ç‰¹æ€§
 set nocompatible
 
-"-------------------- ÑÕÉ«Ö÷Ìâ -----------------------
+"-------------------- é¢œè‰²ä¸»é¢˜ -----------------------
 color desert
 
-"-------------------- GUI ÉèÖÃ -----------------------
-"Òş²Ø
+"-------------------- GUI è®¾ç½® -----------------------
+"éšè—
 "set go=
-"Òş²ØGVIM¹¤¾ßÀ¸
+"éšè—GVIMå·¥å…·æ 
 "set guioptions-=T
-"Òş²ØGVIM²Ëµ¥À¸
+"éšè—GVIMèœå•æ 
 "set guioptions-=m
-"Òş²ØGVIM×ó¹ö¶¯À¸
+"éšè—GVIMå·¦æ»šåŠ¨æ 
 "set guioptions-=l
-"Òş²ØGVIMÓÒ¹ö¶¯À¸
+"éšè—GVIMå³æ»šåŠ¨æ 
 "set guioptions-=r
-"Òş²ØGVIM×ó¹ö¶¯À¸£¬µ±´¹Ö±·Ö¸î´°¿ÚÊ±
+"éšè—GVIMå·¦æ»šåŠ¨æ ï¼Œå½“å‚ç›´åˆ†å‰²çª—å£æ—¶
 "set guioptions-=L
-"Òş²ØGVIMÓÒ¹ö¶¯À¸£¬µ±Ë®Æ½·Ö¸î´°¿ÚÊ±
+"éšè—GVIMå³æ»šåŠ¨æ ï¼Œå½“æ°´å¹³åˆ†å‰²çª—å£æ—¶
 "set guioptions-=R
-"Òş²ØËùÓĞGVIMµÄGUIÔªËØ
+"éšè—æ‰€æœ‰GVIMçš„GUIå…ƒç´ 
 "set guioptions-=TmrlRL
-"ÏÔÊ¾ËùÓĞGVIMµÄGUIÔªËØ
+"æ˜¾ç¤ºæ‰€æœ‰GVIMçš„GUIå…ƒç´ 
 set guioptions+=TmrlRL
 
-"-------------------- ³õÊ¼½çÃæÉè¶¨ -----------------------
-"ÉèÖÃ³õÊ¼½çÃæÎ»ÖÃ
+"-------------------- åˆå§‹ç•Œé¢è®¾å®š -----------------------
+"è®¾ç½®åˆå§‹ç•Œé¢ä½ç½®
 winpos 300 50 
-"ÉèÖÃ³õÊ¼½çÃæ´óĞ¡
+"è®¾ç½®åˆå§‹ç•Œé¢å¤§å°
 set lines=45 columns=150 
-"×î´ó»¯(½öÊÊÓÃÓÚwindowsÆ½Ì¨)
+"æœ€å¤§åŒ–(ä»…é€‚ç”¨äºwindowså¹³å°)
 "autocmd GUIEnter * simalt ~x
 
+"-------------------- å‘½ä»¤è¡Œé«˜åº¦ --------------------
+"é»˜è®¤ä¸º1
+set cmdheight=1
+
 "-------------------- statusline -----------------------
-"×ÜÊÇ²»ÏÔÊ¾×´Ì¬ĞĞ
+"æ€»æ˜¯ä¸æ˜¾ç¤ºçŠ¶æ€è¡Œ
 "set laststatus=0
-"½öµ±´°¿Ú¶àÓÚÒ»¸öÊ±£¬ÏÔÊ¾×´Ì¬ĞĞ
+"ä»…å½“çª—å£å¤šäºä¸€ä¸ªæ—¶ï¼Œæ˜¾ç¤ºçŠ¶æ€è¡Œ
 "set laststatus=1
-"×ÜÊÇÏÔÊ¾×´Ì¬ĞĞ
+"æ€»æ˜¯æ˜¾ç¤ºçŠ¶æ€è¡Œ
 set laststatus=2
 "set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [POS=%04l,%04v][%p%%]\ [LEN=%L]\
 set statusline=%2*%n%m%r%h%w%*\ %F\ %1*[FORMAT=%2*%{&ff}:%{&fenc!=''?&fenc:&enc}%1*]\ [TYPE=%2*%Y%1*]\ [COL=%2*%03v%1*]\ [ROW=%2*%03l%1*/%3*%L(%p%%)%1*]
@@ -194,65 +198,65 @@ hi User1 guifg=gray
 hi User2 guifg=red
 hi User3 guifg=white
 
-"-------------------- ×Ô¶¯±¸·İ -----------------------
-"ÄÚ´æ½»»»Çø×Ô¶¯±¸·İ£¬·ÀÖ¹Í»È»¶ÏµçµÈ¹ÊÕÏ
+"-------------------- è‡ªåŠ¨å¤‡ä»½ -----------------------
+"å†…å­˜äº¤æ¢åŒºè‡ªåŠ¨å¤‡ä»½ï¼Œé˜²æ­¢çªç„¶æ–­ç”µç­‰æ•…éšœ
 set swapfile  " set swf
 "set noswapfile  " set noswf
 set directory=D:/Project/Gvim/_swp//
 
-"×Ô¶¯ÎÄ¼ş±¸·İ
+"è‡ªåŠ¨æ–‡ä»¶å¤‡ä»½
 set backup
 "set nobackup
-"set backupext=.vibak   "×Ô¶¨Òåºó×º
+"set backupext=.vibak   "è‡ªå®šä¹‰åç¼€
 set backupdir=D:/Project/Gvim/_backupdir//
 
-"´æ´¢³·Ïú¼ÇÂ¼ÎÄ¼ş
+"å­˜å‚¨æ’¤é”€è®°å½•æ–‡ä»¶
 set undofile  " set udf
 "set noundofile  " set noudf
 set undodir=D:/Project/Gvim/_undodir//
 
-"-------------------- ÀúÊ·¼ÇÂ¼ -----------------------
+"-------------------- å†å²è®°å½• -----------------------
 set history=1000
 
-"-------------------- µ±Ç°ĞĞÉèÖÃ -----------------------
+"-------------------- å½“å‰è¡Œè®¾ç½® -----------------------
 set cursorline
 set scrolloff=2
 
-"-------------------- µ±Ç°ĞĞÉèÖÃ -----------------------
-"ÏÔÊ¾ĞĞÊı
+"-------------------- å½“å‰è¡Œè®¾ç½® -----------------------
+"æ˜¾ç¤ºè¡Œæ•°
 set number
 
-"-------------------- Êó±êÖ§³Ö -----------------------
+"-------------------- é¼ æ ‡æ”¯æŒ -----------------------
 set mouse=a
 
-"-------------------- ÓÒÏÂ½ÇÏÔÊ¾¹â±êÎ»ÖÃµÄ×´Ì¬ĞĞ -------------
+"-------------------- å³ä¸‹è§’æ˜¾ç¤ºå…‰æ ‡ä½ç½®çš„çŠ¶æ€è¡Œ -------------
 set ruler
 
-"-------------------- ÏÔÊ¾ÎÄ±¾´¦ÀíÄ£Ê½ -----------------------
+"-------------------- æ˜¾ç¤ºæ–‡æœ¬å¤„ç†æ¨¡å¼ -----------------------
 set showmode
 
-"-------------------- ËÑË÷ºöÂÔ´óĞ¡Ğ´ -----------------------
+"-------------------- æœç´¢å¿½ç•¥å¤§å°å†™ -----------------------
 set ignorecase
 
-"-------------------- ×Ô¶¯ÇĞ»»ÔËĞĞÄ¿Â¼ -----------------------
+"-------------------- è‡ªåŠ¨åˆ‡æ¢è¿è¡Œç›®å½• -----------------------
 "set autochdir " set acd
 
 
-"-------------------- ²Ù×÷ÓĞÎóÆÁÄ»ÉÁË¸ -----------------------
+"-------------------- æ“ä½œæœ‰è¯¯å±å¹•é—ªçƒ -----------------------
 set visualbell " set vb
 "set novisualbell " set novb
 
-"Ê¹ÓÃÖĞÎÄ°ïÖúÎÄµµ
+"ä½¿ç”¨ä¸­æ–‡å¸®åŠ©æ–‡æ¡£
 set helplang=cn
 
-"-------------------- ×ÖÌå ----------------------- 
-"windowsÆ½Ì¨ 
+"-------------------- å­—ä½“ ----------------------- 
+"windowså¹³å° 
 set guifont=Mouse_YaHeiConsolas:h10:cANSI
-"LinuxÆ½Ì¨
-"set guifont=YaHei\ Consolas\ Hybrid\ 10 "¿Õ¸ñĞèÒª×ªÒå
+"Linuxå¹³å°
+"set guifont=YaHei\ Consolas\ Hybrid\ 10 "ç©ºæ ¼éœ€è¦è½¬ä¹‰
 
 
-"-------------- ËÑË÷ÕÛµş -----------------------
+"-------------- æœç´¢æŠ˜å  -----------------------
 nnoremap zpr :setlocal foldexpr=(getline(v:lnum)=~@/)?0:(getline(v:lnum-1)=~@/)\\|\\|(getline(v:lnum+1)=~@/)?1:2 foldmethod=expr foldlevel=0 foldcolumn=2<CR>:set foldmethod=manual<CR><CR>
 
 "-------------------- alias ----------------------
@@ -263,14 +267,14 @@ nnoremap N Nzz
 inoremap kj <Esc>
 
 
-"-------------------- Ìí¼Ó°æÈ¨ĞÅÏ¢ ----------------------
-"´´½¨ĞÂÎÄ¼ş×Ô¶¯Ìí¼Ó°æÈ¨ĞÅÏ¢
+"-------------------- æ·»åŠ ç‰ˆæƒä¿¡æ¯ ----------------------
+"åˆ›å»ºæ–°æ–‡ä»¶è‡ªåŠ¨æ·»åŠ ç‰ˆæƒä¿¡æ¯
 autocmd BufNewFile *.v,*.sv,*.cpp,*.c,*.h exec ":call TitleDet()"
 
-"¿ì½İ¼ü F4 ÊÖ¶¯Ìí¼Ó»ò¸üĞÂ°æÈ¨ĞÅÏ¢
+"å¿«æ·é”® F4 æ‰‹åŠ¨æ·»åŠ æˆ–æ›´æ–°ç‰ˆæƒä¿¡æ¯
 map <F4> :call TitleDet()<CR>
 
-"ÅĞ¶ÏÓĞÃ»ÓĞ°æÈ¨ĞÅÏ¢
+"åˆ¤æ–­æœ‰æ²¡æœ‰ç‰ˆæƒä¿¡æ¯
 function TitleDet()
     let n=1
     while n < 10
@@ -284,7 +288,7 @@ function TitleDet()
     call AddTitle()
 endfunction
 
-"Ìí¼Ó°æÈ¨ĞÅÏ¢
+"æ·»åŠ ç‰ˆæƒä¿¡æ¯
 function AddTitle()
     call append(0,"/*=============================================================================")
     call append(1,"#")
@@ -299,7 +303,7 @@ function AddTitle()
     echohl WarningMsg | echo "Successful in adding the copyright." | echohl None
 endfunction
 
-"¸üĞÂ×î½üĞŞ¸ÄÊ±¼äºÍÎÄ¼şÃû
+"æ›´æ–°æœ€è¿‘ä¿®æ”¹æ—¶é—´å’Œæ–‡ä»¶å
 function UpdateTitle_src()
     normal m'
     execute '/# *Last Modified :/s@:.*$@\=strftime(": %Y-%m-%d %H:%M")@'
@@ -320,8 +324,8 @@ function UpdateTitle()
 endfunction
 
 
-"-------------------- Ìí¼Ó×¢ÊÍ ----------------------
-"Ó³ÉäF11¿ì½İ¼ü£¬Éú³ÉºóÌø×ªÖÁÏÂĞĞ£¬È»ºóÊ¹ÓÃO½øÈëvimµÄ²åÈëÄ£Ê½
+"-------------------- æ·»åŠ æ³¨é‡Š ----------------------
+"æ˜ å°„F11å¿«æ·é”®ï¼Œç”Ÿæˆåè·³è½¬è‡³ä¸‹è¡Œï¼Œç„¶åä½¿ç”¨Oè¿›å…¥vimçš„æ’å…¥æ¨¡å¼
 map <F11> :call SetComment()<CR>j<CR>O  
 func SetComment()
     call append(line(".")  , '//---------------------------------------------------')
@@ -330,22 +334,22 @@ endfunc
 
 
 "------------------- verilog --------------------------
-"Éú³ÉÊ±ĞòÂß¼­¿ò¼Ü¿é£¬ÊäÈë seqlogic + »Ø³µ/¿Õ¸ñ
+"ç”Ÿæˆæ—¶åºé€»è¾‘æ¡†æ¶å—ï¼Œè¾“å…¥ seqlogic + å›è½¦/ç©ºæ ¼
 :iab seqlogic always @(posedge clk or negedge rst_n) begin<Enter>if (!rst_n) begin<Enter>end<Enter>else begin<Enter>end<Enter>end<Enter><Up><Up><Up><Up><Up><End>
 
-"Éú³É×éºÏÂß¼­¿ò¼Ü¿é£¬ÊäÈë comlogic + »Ø³µ/¿Õ¸ñ
+"ç”Ÿæˆç»„åˆé€»è¾‘æ¡†æ¶å—ï¼Œè¾“å…¥ comlogic + å›è½¦/ç©ºæ ¼
 iabbr comlogic always @(*) begin<Enter>end<Enter><Up><Up><End>
 
-"²¹È« begin ... end£¬ÊäÈë begin + »Ø³µ/¿Õ¸ñ
+"è¡¥å…¨ begin ... endï¼Œè¾“å…¥ begin + å›è½¦/ç©ºæ ¼
 iab begin begin<Enter>end<Up><End>
 
-"²¹È« case£¬ÊäÈë casem + ¿Õ¸ñ
+"è¡¥å…¨ caseï¼Œè¾“å…¥ casem + ç©ºæ ¼
 iab casem case ()<Enter>default: ;<Enter>endcase<Up><Up><End><Left>
 
-"·ÂÕæ task£¬ÊäÈë simtf + »Ø³µ/¿Õ¸ñ
+"ä»¿çœŸ taskï¼Œè¾“å…¥ simtf + å›è½¦/ç©ºæ ¼
 iabbr simtf <Enter>task simt(input [39:0] simt_multi, input [39:0] simt_delay);<Enter>forever begin<Enter>#(simt_multi * simt_delay);<Enter>$display("--------> simulation time:%d", $time);<Enter>end<Enter>endtask<Enter><Enter><Enter>task simf(input [39:0] simf_multi, input [39:0] simf_finish);<Enter>begin<Enter>#(simf_multi * simf_finish);<Enter>$display("--------> finish     time:%d",$time);<Enter>$finish;<Enter>end<Enter>endtask<Enter><Esc>8k<Home>i//--------------- simf ---------------<Esc>8k<Home>i//--------------- simt ---------------<Esc>16jA
 
-"·ÂÕæ task Ä£°å£¬ÊäÈë taskm + ¿Õ¸ñ
+"ä»¿çœŸ task æ¨¡æ¿ï¼Œè¾“å…¥ taskm + ç©ºæ ¼
 "iab task task ();<Enter>fork<Enter>join<Enter>endtask<Enter><Up><Up><Up><Up><End><left><left><Left>
 iab taskm <Enter>task ();<Enter>fork<Enter>begin<Enter>end<Enter>simt(1000, 1000);<Enter>simf(1000, 20_000);<Enter>join<Enter>endtask<Enter><Esc>9k<Home>i//--------------- ---------------<Esc>j<End>3hi
 
