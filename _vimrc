@@ -354,3 +354,13 @@ iabbr simtf <Enter>task simt(input [39:0] simt_multi, input [39:0] simt_delay);<
 "iab task task ();<Enter>fork<Enter>join<Enter>endtask<Enter><Up><Up><Up><Up><End><left><left><Left>
 iab taskm <Enter>task ();<Enter>fork<Enter>begin<Enter>end<Enter>simt(1000, 1000);<Enter>simf(1000, 20_000);<Enter>join<Enter>endtask<Enter><Esc>9k<Home>i//--------------- ---------------<Esc>j<End>3hi
 
+"----------------------------------------------------
+"Verilog 例化对齐
+command! Alig :execute 's/\s*\(\.\w*\)\s*(\s*\(\w*\)\s*)\s*,/    \1( \2 ) ,/g | s/^\(.*\.\w*\s*\)\zs\ze(/\=repeat(" ",30-strlen(submatch(1)))/g | s/\((\s*\w*\s*\)\zs/\=repeat(" ",30-strlen(submatch(1)))/g'
+
+map <F10> : call CodeAlignment()<CR>j
+
+function CodeAlignment()
+    "normal 
+    execute 's/\s*\(\.\w*\)\s*(\s*\(\w*\)\s*)\s*,/    \1( \2 ) ,/g | s/^\(.*\.\w*\s*\)\zs\ze(/\=repeat(" ",30-strlen(submatch(1)))/g | s/\((\s*\w*\s*\)\zs/\=repeat(" ",30-strlen(submatch(1)))/g'
+endfunction
