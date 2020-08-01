@@ -364,3 +364,8 @@ function CodeAlignment()
     "normal 
     execute 's/\s*\(\.\w*\)\s*(\s*\(\w*\)\s*)\s*,/    \1( \2 ) ,/g | s/^\(.*\.\w*\s*\)\zs\ze(/\=repeat(" ",30-strlen(submatch(1)))/g | s/\((\s*\w*\s*\)\zs/\=repeat(" ",30-strlen(submatch(1)))/g'
 endfunction
+
+"-------------------------- 字体缩放 ----------------------
+com! -nargs=0 LargeFont :let &gfn=substitute(&gfn,"\\(\\D*\\)\\(\\d\\+\\)", "\\=submatch(1).(submatch(2)+2)","")
+com! -nargs=0 SmallFont :let &gfn=substitute(&gfn,"\\(\\D*\\)\\(\\d\\+\\)", "\\=submatch(1).(submatch(2)-2)","")
+
