@@ -288,7 +288,8 @@ map <F10> : call CodeAlignment()<CR>j
 
 function CodeAlignment()
     "normal 
-    execute 's/\s*\(\.\w*\)\s*(\s*\(\w*\)\s*)\s*,/    \1( \2 ) ,/g | s/^\(.*\.\w*\s*\)\zs\ze(/\=repeat(" ",30-strlen(submatch(1)))/g | s/\((\s*\w*\s*\)\zs/\=repeat(" ",30-strlen(submatch(1)))/g'
+    "execute 's/\s*\(\.\w*\)\s*(\s*\(\w*\)\s*)\s*,/    \1( \2 ) ,/g | s/^\(.*\.\w*\s*\)\zs\ze(/\=repeat(" ",30-strlen(submatch(1)))/g | s/\((\s*\w*\s*\)\zs/\=repeat(" ",30-strlen(submatch(1)))/g'
+    execute 's/\s*\(\.\w*\)\s*(\s*\(\S*\)\s*)\s*,/    \1( \2 ) ,/g | s/^\(.*\.\S*\s*\)\zs\ze(/\=repeat(" ",30-strlen(submatch(1)))/g | s/\((\s*\S*\s*\)\zs/\=repeat(" ",30-strlen(submatch(1)))/g'
 endfunction
 
 "-------------------------- 字体缩放 ----------------------
