@@ -137,6 +137,17 @@ hi User2 guifg=red
 hi User3 guifg=white
 
 "-------------------- 自动备份 -----------------------
+"建立文件夹
+if empty(glob("~/.vim/swapfile))
+    silent exec "!mkdir -p ~/.vim/swapfile"
+endif
+if empty(glob("~/.vim/backup))
+    silent exec "!mkdir -p ~/.vim/backup"
+endif
+if empty(glob("~/.vim/undofile))
+    silent exec "!mkdir -p ~/.vim/undofile"
+endif
+
 "内存交换区自动备份，防止突然断电等故障
 set swapfile  " set swf
 "set noswapfile  " set noswf
