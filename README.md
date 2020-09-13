@@ -1,2 +1,2 @@
 # vim
-backup my vim config
+git clone https://github.com/yllinux/vim/tree/master
