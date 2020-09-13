@@ -95,10 +95,10 @@ set tabpagemax=50
 
 "-------------------- 自动补全 -----------------------
 "使用映射
-"inoremap   (   ()<ESC>i
-"inoremap   [   []<ESC>i
-"inoremap   {   {}<ESC>i
-"inoremap   "   ""<ESC>i
+inoremap   (   ()<ESC>i
+inoremap   [   []<ESC>i
+inoremap   {   {}<ESC>i
+inoremap   "   ""<ESC>i
 "inoremap   '   ''<ESC>i
 
 "设置跳出自动补全的括号
@@ -336,23 +336,23 @@ endfunc
 
 "------------------- verilog --------------------------
 "生成时序逻辑框架块，输入 seqlogic + 回车/空格
-:iab seqlogic always @(posedge clk or negedge rst_n) begin<Enter>if (!rst_n) begin<Enter>end<Enter>else begin<Enter>end<Enter>end<Enter><Up><Up><Up><Up><Up><End>
+:iab seqlogic always @(posedge clk or negedge rst_n<TAB> begin<Enter>if (!rst_n<TAB> begin<Enter>end<Enter>else begin<Enter>end<Enter>end<Enter><Up><Up><Up><Up><Up><End>
 
 "生成组合逻辑框架块，输入 comlogic + 回车/空格
-iabbr comlogic always @(*) begin<Enter>end<Enter><Up><Up><End>
+iabbr comlogic always @(*<TAB> begin<Enter>end<Enter><Up><Up><End>
 
 "补全 begin ... end，输入 begin + 回车/空格
 iab begin begin<Enter>end<Up><End>
 
 "补全 case，输入 casem + 空格
-iab casem case ()<Enter>default: ;<Enter>endcase<Up><Up><End><Left>
+iab casem case (<TAB><Enter>default: ;<Enter>endcase<Up><Up><End><Left>
 
 "仿真 task，输入 simtf + 回车/空格
-iabbr simtf <Enter>task simt(input [39:0] simt_multi, input [39:0] simt_delay);<Enter>forever begin<Enter>#(simt_multi * simt_delay);<Enter>$display("--------> simulation time:%d", $time);<Enter>end<Enter>endtask<Enter><Enter><Enter>task simf(input [39:0] simf_multi, input [39:0] simf_finish);<Enter>begin<Enter>#(simf_multi * simf_finish);<Enter>$display("--------> finish     time:%d",$time);<Enter>$finish;<Enter>end<Enter>endtask<Enter><Esc>8k<Home>i//--------------- simf ---------------<Esc>8k<Home>i//--------------- simt ---------------<Esc>16jA
+iabbr simtf <Enter>task simt(input [39:0<TAB> simt_multi, input [39:0<TAB> simt_delay<TAB>;<Enter>forever begin<Enter>#(simt_multi * simt_delay<TAB>;<Enter>$display("--------> simulation time:%d<TAB>, $time<TAB>;<Enter>end<Enter>endtask<Enter><Enter><Enter>task simf(input [39:0<TAB> simf_multi, input [39:0<TAB> simf_finish<TAB>;<Enter>begin<Enter>#(simf_multi * simf_finish<TAB>;<Enter>$display("--------> finish     time:%d<TAB>,$time<TAB>;<Enter>$finish;<Enter>end<Enter>endtask<Enter><Esc>8k<Home>i//--------------- simf ---------------<Esc>8k<Home>i//--------------- simt ---------------<Esc>16jA
 
 "仿真 task 模板，输入 taskm + 空格
-"iab task task ();<Enter>fork<Enter>join<Enter>endtask<Enter><Up><Up><Up><Up><End><left><left><Left>
-iab taskm <Enter>task ();<Enter>fork<Enter>begin<Enter>end<Enter>simt(1000, 1000);<Enter>simf(1000, 20_000);<Enter>join<Enter>endtask<Enter><Esc>9k<Home>i//--------------- ---------------<Esc>j<End>3hi
+"iab task task (<TAB>;<Enter>fork<Enter>join<Enter>endtask<Enter><Up><Up><Up><Up><End><left><left><Left>
+iab taskm <Enter>task (<TAB>;<Enter>fork<Enter>begin<Enter>end<Enter>simt(1000, 1000<TAB>;<Enter>simf(1000, 20_000<TAB>;<Enter>join<Enter>endtask<Enter><Esc>9k<Home>i//--------------- ---------------<Esc>j<End>3hi
 
 "----------------------------------------------------
 "Verilog 例化对齐
