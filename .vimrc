@@ -138,13 +138,13 @@ hi User3 guifg=white
 
 "-------------------- 自动备份 -----------------------
 "建立文件夹
-if empty(glob("~/.vim/swapfile))
+if empty(glob("~/.vim/swapfile"))
     silent exec "!mkdir -p ~/.vim/swapfile"
 endif
-if empty(glob("~/.vim/backup))
+if empty(glob("~/.vim/backup"))
     silent exec "!mkdir -p ~/.vim/backup"
 endif
-if empty(glob("~/.vim/undofile))
+if empty(glob("~/.vim/undofile"))
     silent exec "!mkdir -p ~/.vim/undofile"
 endif
 
