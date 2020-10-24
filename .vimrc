@@ -97,6 +97,8 @@ filetype on
 "为特定的文件类型允许插件文件的载入，为特定的文件类型载入缩进文件
 filetype plugin indent on
 
+set hls
+
 "-------------------- 兼容 -----------------------
 "不兼容VI，使用VIM的新特性
 set nocompatible

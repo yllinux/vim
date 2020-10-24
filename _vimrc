@@ -141,6 +141,8 @@ if &t_Co > 1
 syntax enable
 endif
 
+set hls
+
 "文件类型检测
 filetype on
 "为特定的文件类型允许插件文件的载入，为特定的文件类型载入缩进文件
