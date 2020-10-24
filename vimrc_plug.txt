@@ -1,0 +1,42 @@
+"=================================
+if !empty(glob("/home/vim/.vimrc"))
+  source /home/vim/.vimrc
+endif
+
+"=================================
+" Specify a directory for plugins
+" - For Neovim: stdpath('data') . '/plugged'
+" - Avoid using standard Vim directory names like 'plugin'
+call plug#begin('~/.vim/plugged')
+
+" Make sure you use single quotes
+
+" Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
+""Plug 'junegunn/vim-easy-align'
+Plug 'preservim/nerdtree'
+Plug 'Yggdroot/LeaderF'
+Plug 'Yggdroot/indentLine'
+Plug 'nachumk/systemverilog.vim'
+Plug 'tpope/vim-fugitive'
+"Plug 'vim-airline/vim-airline'
+Plug 'itchyny/lightline.vim'
+Plug 'dense-analysis/ale'
+"Plug 'neoclide/coc.nvim'
+Plug 'sickill/vim-monokai'
+
+" Any valid git URL is allowed
+""Plug 'https://github.com/junegunn/vim-github-dashboard.git'
+
+
+" Initialize plugin system
+call plug#end()
+
+"
+"
+"=================================
+"-------------- Leaderf setting -------------
+let g:Lf_ShowDevIcons = 0
+"
+
+"-------------- monokai setting -------------
+colorscheme monokai
