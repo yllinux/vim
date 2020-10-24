@@ -149,6 +149,7 @@ filetype plugin indent on
 "-------------------- 兼容 -----------------------
 "不兼容VI，使用VIM的新特性
 set nocompatible
+set backspace=indent,eol,start
 
 "-------------------- 颜色主题 -----------------------
 color desert
