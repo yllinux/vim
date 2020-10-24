@@ -86,10 +86,12 @@ set expandtab
 "开启语法高亮， 用缺省值覆盖你自己的
 syntax on
 "只在支持彩色的终端中生效
+if !has('gui_running')
+  set t_Co=256
+endif
 if &t_Co > 1
 syntax enable
 endif
-
 "文件类型检测
 filetype on
 "为特定的文件类型允许插件文件的载入，为特定的文件类型载入缩进文件
