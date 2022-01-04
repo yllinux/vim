@@ -302,6 +302,16 @@ iabbr simtf <Enter>task simt(input [39:0<TAB> simt_multi, input [39:0<TAB> simt_
 "iab task task (<TAB>;<Enter>fork<Enter>join<Enter>endtask<Enter><Up><Up><Up><Up><End><left><left><Left>
 iab taskm <Enter>task (<TAB>;<Enter>fork<Enter>begin<Enter>end<Enter>simt(1000, 1000<TAB>;<Enter>simf(1000, 20_000<TAB>;<Enter>join<Enter>endtask<Enter><Esc>9k<Home>i//--------------- ---------------<Esc>j<End>3hi
 
+"-------------------------- 注释 ----------------------
+map <F11> :call SetComment()<CR>j<CR>A
+func SetComment()
+    call append(line(".")  , '//-------------------------------------------------------------------------------------------------------------------------------')
+    call append(line(".")+1, '// ')
+    call append(line(".")+3, '//-------------------------------------------------------------------------------------------------------------------------------')
+endfunc
+
+map <F12> <Esc>mtA  // by <Esc>:r !echo $USER<Enter>A <Esc>kJ<Esc>:r !date \+'\%F \%T'<Enter>A <Esc>kJ`t
+
 "----------------------------------------------------
 "Verilog 例化对齐
 command! Alig :execute 's/\s*\(\.\w*\)\s*(\s*\(\w*\)\s*)\s*,/    \1( \2 ) ,/g | s/^\(.*\.\w*\s*\)\zs\ze(/\=repeat(" ",30-strlen(submatch(1)))/g | s/\((\s*\w*\s*\)\zs/\=repeat(" ",30-strlen(submatch(1)))/g'
