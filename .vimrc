@@ -192,6 +192,11 @@ set showmode
 "-------------------- 搜索忽略大小写 -----------------------
 set ignorecase
 
+"-------------------- diff忽略空格 -----------------------
+if &diff
+    set diffopt+=iwhite
+endif 
+
 "-------------------- 自动切换运行目录 -----------------------
 "set autochdir " set acd
 
@@ -242,16 +247,17 @@ endfunction
 
 "添加版权信息
 function AddTitle()
-    call append(0,"/*=============================================================================")
-    call append(1,"#")
-    call append(2,"#          Author : yangl - 283145107@qq.com")
-    call append(3,"#       What's Up : Keep on going never give up")
-    call append(4,"#     Create Date : ".strftime("%Y-%m-%d %H:%M"))
-    call append(5,"#   Last Modified : ".strftime("%Y-%m-%d %H:%M"))
-    call append(6,"#        Filename : ".expand("%:t"))
-    call append(7,"#     Description : ")
-    call append(8,"#")
-    call append(9,"=============================================================================*/")
+    call append(0,"//#*****************************************************************************")
+    call append(1,"//#")
+    call append(2,"//# Company : None")
+    call append(3,"//# Project : None")
+    call append(4,"//# Create Date : ".strftime("%Y-%m-%d %H:%M"))
+    call append(5,"//# Last Modified : ".strftime("%Y-%m-%d %H:%M"))
+    call append(6,"//# Filename : ".expand("%:t"))
+    call append(7,"//# Engineer : ".expand("$USER"))
+    call append(8,"//# Description : ")
+    call append(9,"//#               ")
+    call append(10,"//#*****************************************************************************")
     echohl WarningMsg | echo "Successful in adding the copyright." | echohl None
 endfunction
 
