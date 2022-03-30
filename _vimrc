@@ -301,14 +301,14 @@ endfunction
 function AddTitle()
     call append(0,"//#*****************************************************************************")
     call append(1,"//#")
-    call append(2,"//# Company : None")
-    call append(3,"//# Project : None")
-    call append(4,"//# Create Date : ".strftime("%Y-%m-%d %H:%M"))
+    call append(2,"//# Company       : None")
+    call append(3,"//# Project       : None")
+    call append(4,"//# Create Date   : ".strftime("%Y-%m-%d %H:%M"))
     call append(5,"//# Last Modified : ".strftime("%Y-%m-%d %H:%M"))
-    call append(6,"//# Filename : ".expand("%:t"))
-    call append(7,"//# Engineer : ".expand("$USERNAME"))
-    call append(8,"//# Description : ")
-    call append(9,"//#               ")
+    call append(6,"//# Filename      : ".expand("%:t"))
+    call append(7,"//# Engineer      : ".expand("$USERNAME"))
+    call append(8,"//# Description   : ")
+    call append(9,"//#                 ")
     call append(10,"//#*****************************************************************************")
     echohl WarningMsg | echo "Successful in adding the copyright." | echohl None
 endfunction
@@ -375,7 +375,8 @@ map <F10> : call CodeAlignment()<CR>j
 function CodeAlignment()
     "normal 
     "execute 's/\s*\(\.\w*\)\s*(\s*\(\w*\)\s*)\s*,/    \1( \2 ) ,/g | s/^\(.*\.\w*\s*\)\zs\ze(/\=repeat(" ",30-strlen(submatch(1)))/g | s/\((\s*\w*\s*\)\zs/\=repeat(" ",30-strlen(submatch(1)))/g'
-    execute 's/\s*\(\.\w*\)\s*(\s*\(\S*\)\s*)\s*,/    \1( \2 ) ,/g | s/^\(.*\.\S*\s*\)\zs\ze(/\=repeat(" ",30-strlen(submatch(1)))/g | s/\((\s*\S*\s*\)\zs/\=repeat(" ",30-strlen(submatch(1)))/g'
+    "execute 's/\s*\(\.\w*\)\s*(\s*\(\S*\)\s*)\s*,/    \1( \2 ) ,/g | s/^\(.*\.\S*\s*\)\zs\ze(/\=repeat(" ",30-strlen(submatch(1)))/g | s/\((\s*\S*\s*\)\zs/\=repeat(" ",30-strlen(submatch(1)))/g'
+    execute 's/\s*\(\.\w*\)\s*(\s*\(\S*\)\s*)\s*\(,\|);\|$\)/    \1( \2 ) \3/g | s/^\(.*\.\S*\s*\)\zs\ze(/\=repeat(" ",30-strlen(submatch(1)))/g | s/\((\s*\S*\s*\)\zs/\=repeat(" ",30-strlen(submatch(1)))/g'
 endfunction
 
 "-------------------------- 字体缩放 ----------------------
